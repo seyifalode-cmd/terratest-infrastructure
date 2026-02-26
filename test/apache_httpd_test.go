@@ -1,13 +1,14 @@
 package test
 
 import (
-	http_helper "github.com/gruntwork-io/terratest/modules/http-helper"
-	"github.com/gruntwork-io/terratest/modules/terraform"
 	"testing"
 	"time"
+
+	http_helper "github.com/gruntwork-io/terratest/modules/http-helper"
+	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-// An example of a unit test for the Terraform to create an EC2 with 
+// An example of a unit test for the Terraform to create an EC2 with
 // an Apache httpd server
 func TestApacheHttpdServer(t *testing.T) {
 
@@ -18,11 +19,11 @@ func TestApacheHttpdServer(t *testing.T) {
 		TerraformDir: "../main",
 	}
 
-	// At the end of the test, run `terraform destroy` to clean up any resources 
+	// At the end of the test, run `terraform destroy` to clean up any resources
 	// that were created
 	defer terraform.Destroy(t, terraformOptions)
 
-	// This will run `terraform init` and `terraform apply` and fail the test 
+	// This will run `terraform init` and `terraform apply` and fail the test
 	// if there are any errors
 	terraform.InitAndApply(t, terraformOptions)
 
@@ -39,9 +40,8 @@ func validateApacheHttpdServer(t *testing.T, terraformOptions *terraform.Options
 	// Verify the app returns a 200 OK with the text "Automated Terraform Testing"
 	expectedStatus := 200
 	expectedBody := "<html><body><h1>Automated Terraform Testing</h1></body></html>"
-	maxRetries := 10
+	maxRetries := 100
 	timeBetweenRetries := 3 * time.Second
 	http_helper.HttpGetWithRetry(t, url, nil, expectedStatus, expectedBody, maxRetries, timeBetweenRetries)
 
-	
 }

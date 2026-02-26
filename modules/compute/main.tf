@@ -20,7 +20,7 @@ resource "aws_key_pair" "aws-key" {
 #Create and bootstrap webserver
 #===================================
 resource "aws_instance" "webserver" {
-  instance_type               = "t2.micro"
+  instance_type               = "t3.micro"
   ami                         = data.aws_ssm_parameter.webserver-ami.value
   tags = {
     Name = "webserver_tf"
