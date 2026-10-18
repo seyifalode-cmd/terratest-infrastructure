@@ -1,5 +1,7 @@
 # Terratest Infrastructure
 
+Oluwaseyi Michael Falode | Cloud & DevOps Engineering | Toronto, ON
+
 Automated testing of Terraform infrastructure code using Terratest — a Go-based testing framework that provisions real AWS resources, validates they work correctly, then destroys them. Proves that infrastructure code is correct before it ever touches production.
 
 ---
